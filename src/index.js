@@ -86,7 +86,6 @@ const filterDogs = () => {
                     }
                 })
                 )
-            
         }
         else{
             document.querySelector('#good-dog-filter').innerText = 'Filter good dogs: OFF'
