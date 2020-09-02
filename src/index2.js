@@ -1,21 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetchDogs();
 })
-
 const fetchDogs = () => {
     fetch('http://localhost:3000/pups')
     .then(response => response.json())
-    .then(pups => attachPupsToBar(pups))
+    .then(pups => renderDogs(pups))
 }
-
+const renderDogs  = (pups) => {
+    attachPupsToBar(pups);
+}
 const attachPupsToBar = (pups) => {
     const dogBarDiv = document.getElementById('dog-bar')
-    const pupFilterButton = document.querySelector('#good-dog-filter')
-
-    pupFilterButton.addEventListener("click", (e)=>{
-        console.log(e)
-    })
-    
     pups.forEach(pup => {
         const pupSpan = document.createElement('span')
         pupSpan.innerHTML = pup.name
@@ -26,11 +21,9 @@ const attachPupsToBar = (pups) => {
         })
     });
 }
-
 const pupImg = document.createElement('img')
 const pupName = document.createElement('h2')
 const pupGoodButton = document.createElement('button')
-
 const pupInfo = (pup) => {
     const info = document.getElementById('dog-info')
     pupImg.src = pup.image
@@ -52,7 +45,6 @@ const pupInfo = (pup) => {
         }
     })
 }
-
 const patchGoodDog = (pup) => {
     const dogStatus = true
     console.log(pup.id)
@@ -64,7 +56,6 @@ const patchGoodDog = (pup) => {
     }).then(res => res.json())
     .then(() => {pupGoodButton.innerText = "Good Dog!"})
 }
-
 const patchBadDog = (pup) => {
     const dogStatus = false
     console.log(pup.id)
